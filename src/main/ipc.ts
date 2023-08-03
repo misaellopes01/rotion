@@ -3,6 +3,7 @@ import { IPC } from '@shared/constants/ipc'
 import {
   CreateDocumentResponse,
   DeleteDocumentRequest,
+  Document,
   FetchAllDocumentsResponse,
   FetchDocumentRequest,
   FetchDocumentResponse,

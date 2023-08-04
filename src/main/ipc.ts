@@ -1,4 +1,5 @@
 import { ipcMain } from 'electron'
+import { randomUUID } from 'node:crypto'
 import { IPC } from '@shared/constants/ipc'
 import {
   CreateDocumentResponse,
@@ -31,16 +32,32 @@ ipcMain.handle(
 ipcMain.handle(
   IPC.DOCUMENTS.CREATE,
   async (): Promise<CreateDocumentResponse> => {
+    const id = randomUUID()
+    const document: Document = {
+      id,
+      title: 'Untitled',
+    }
+
+    store.set(`documents.${id}`, document)
     return {
-      document: {},
+      data: document,
     }
   },
 )
 ipcMain.handle(
   IPC.DOCUMENTS.SAVE,
-  async ({ id }: SaveDocumentRequest): Promise<void> => {},
+  async (_, { id, title, content }: SaveDocumentRequest): Promise<void> => {
+    store.set(`documents.${id}`, {
+      id,
+      title,
+      content,
+    })
+  },
 )
 ipcMain.handle(
   IPC.DOCUMENTS.DELETE,
-  async ({ id }: DeleteDocumentRequest): Promise<void> => {},
+  async (_, { id }: DeleteDocumentRequest): Promise<void> => {
+    // @ts-ignore (https://github.com/sindresorhus/electron-store/issues/196)
+    store.delete(`documents.${id}`)
+  },
 )

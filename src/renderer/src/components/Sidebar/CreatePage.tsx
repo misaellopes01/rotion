@@ -9,7 +9,6 @@ export function CreatePage() {
     useMutation(
       async () => {
         const response = await window.api.createDocument()
-
         return response.data
       },
       {

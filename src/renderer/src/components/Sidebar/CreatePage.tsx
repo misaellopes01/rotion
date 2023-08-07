@@ -16,7 +16,7 @@ export function CreatePage() {
           // To invalidade the last query and update with new data
           // queryClient.invalidateQueries(['documents'])
           queryClient.setQueryData<Document[]>(['documents'], (documents) => {
-            if (documents && documents?.length > 0) {
+            if (documents && documents?.length >= 0) {
               return [...documents, data]
             } else {
               return [data]

@@ -7,7 +7,12 @@ app.whenReady().then(() => {
   const menu = Menu.buildFromTemplate([
     { label: 'Rotion', enabled: false },
     { type: 'separator' },
-    { label: 'Rotion' },
+    {
+      label: 'Novo documento',
+      click: () => {
+        console.log('safwe')
+      },
+    },
   ])
 
   tray.setContextMenu(menu)

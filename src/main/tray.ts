@@ -13,6 +13,25 @@ app.whenReady().then(() => {
         console.log('safwe')
       },
     },
+    { type: 'separator' },
+    { label: 'Recentes', enabled: false },
+    {
+      label: 'Ignite',
+      accelerator: 'CommandOrControl+1',
+    },
+    {
+      label: 'Discover',
+      accelerator: 'CommandOrControl+2',
+    },
+    {
+      label: 'Rocketseat',
+      accelerator: 'CommandOrControl+3',
+    },
+    { type: 'separator' },
+    {
+      label: 'Sair',
+      role: 'quit',
+    },
   ])
 
   tray.setContextMenu(menu)

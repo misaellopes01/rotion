@@ -22,12 +22,12 @@ function createWindow(): void {
     },
     ...(process.platform === 'linux'
       ? {
-          icon: path.join(__dirname, '../../build/icon.png'),
+          icon: path.resolve('resources', 'icon.png'),
         }
       : {}),
     ...(process.platform === 'win32'
       ? {
-          icon: path.join(__dirname, '../../build/icon.png'),
+          icon: path.resolve('resources', 'icon.png'),
         }
       : {}),
     webPreferences: {

@@ -40,7 +40,11 @@ const api = {
   },
 
   onNewDocumentRequest(callback: () => void) {
-    return ipcRenderer.on('new-document', callback)
+    ipcRenderer.on('new-document', callback)
+
+    return () => {
+      ipcRenderer.off('new-document', callback)
+    }
   },
 }
 

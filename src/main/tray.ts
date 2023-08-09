@@ -1,8 +1,8 @@
-import { Menu, Tray, app } from 'electron'
+import { BrowserWindow, Menu, Tray } from 'electron'
 import path from 'node:path'
 
-app.whenReady().then(() => {
-  const tray = new Tray(path.resolve(__dirname, 'rotionTemplate.png'))
+export function createTray(window: BrowserWindow) {
+  const tray = new Tray(path.resolve('resources', 'rotionTemplate.png'))
 
   const menu = Menu.buildFromTemplate([
     { label: 'Rotion', enabled: false },
@@ -10,7 +10,7 @@ app.whenReady().then(() => {
     {
       label: 'Novo documento',
       click: () => {
-        console.log('safwe')
+        window.webContents.send('new-document')
       },
     },
     { type: 'separator' },
@@ -35,4 +35,4 @@ app.whenReady().then(() => {
   ])
 
   tray.setContextMenu(menu)
-})
+}

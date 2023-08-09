@@ -1,9 +1,16 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { Plus } from 'phosphor-react'
+import { useEffect } from 'react'
 import { Document } from '~/src/shared/types/ipc'
 
 export function CreatePage() {
   const queryClient = useQueryClient()
+
+  useEffect(() => {
+    window.api.onNewDocumentRequest(() => {
+      console.log('Misael Lopes')
+    })
+  }, [])
 
   const { isLoading: isCreatingNewDocument, mutateAsync: createDocument } =
     useMutation(
